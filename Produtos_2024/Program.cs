@@ -8,6 +8,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<BancoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 
+builder.Services.AddRazorPages().AddMvcOptions(options => 
+{ 
+    options.MaxModelValidationErrors = 50; 
+    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "Este campo é obrigatório!"); 
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
