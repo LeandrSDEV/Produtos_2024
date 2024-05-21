@@ -8,5 +8,10 @@ namespace Produtos_2024.Controllers
         {
             return View();
         }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
     }
 }
