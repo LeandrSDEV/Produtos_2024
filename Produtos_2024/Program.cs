@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Produtos_2024.Data;
+using Produtos_2024.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<BancoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+
+builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
 builder.Services.AddRazorPages().AddMvcOptions(options => 
 { 
