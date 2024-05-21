@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Produtos_2024.Models;
 
 namespace Produtos_2024.Controllers
 {
@@ -12,6 +13,13 @@ namespace Produtos_2024.Controllers
         public IActionResult Criar()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Criar(ProdutoModel produto)
+        {
+            // solicitar cadasto do produto
+            return RedirectToAction("Index");
         }
     }
 }
