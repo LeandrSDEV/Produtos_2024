@@ -39,7 +39,7 @@ namespace Produtos_2024.Repository
 
         public List<ProdutoModel> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return _bancoContext.Produto.ToList();
         }
 
         public ProdutoModel ListarPorId(long id)

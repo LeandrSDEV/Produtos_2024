@@ -7,16 +7,19 @@ namespace Produtos_2024.Controllers
     public class ProdutoController : Controller
     {
 
-        private readonly ProdutoRepositorio _produtoRepositorio;
+        private readonly IProdutoRepositorio _produtoRepositorio;
 
-        public ProdutoController(ProdutoRepositorio produtoRepositorio)
+        public ProdutoController(IProdutoRepositorio produtoRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
         }
 
         public IActionResult Index()
         {
-            return View();
+
+            //buscar produtos no banco de dados
+            List<ProdutoModel> listagem = _produtoRepositorio.BuscarTodos();
+            return View(listagem);
         }
 
         public IActionResult Criar()
@@ -27,7 +30,11 @@ namespace Produtos_2024.Controllers
         [HttpPost]
         public IActionResult Criar(ProdutoModel produto)
         {
+
+            produto.DataDeRegistro = DateTime.Now;
+            // solicita cadastro do produto
             _produtoRepositorio.Adicionar(produto);
+
             return RedirectToAction("Index");
         }
     }
